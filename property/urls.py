@@ -15,10 +15,20 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from property.views import home_view,about_view,contact_view,property_list,property_sell
+from property.views import (home_view,
+                            PropertyList,
+                            property_sell,
+                            PropertyDetail,
+                            PropertyCreate,
+                            PropertyDelete,
+                            PropertyUpdate)
 
 urlpatterns = [
     url(r'^$',home_view),
-    url(r'^buy/',property_list,name="buy"),
-    url(r'^sell/',property_sell,name="sell")
+    url(r'^buy/',PropertyList.as_view(),name="buy"),
+    url(r'^sell/',PropertyCreate.as_view(),name="sell"),
+    url(r'^detail/(?P<pk>\d+)',PropertyDetail.as_view(),name="detail"),
+    url(r'^delete/(?P<pk>\d+)',PropertyDelete.as_view(),name="delete"),
+    url(r'^update/(?P<pk>\d+)',PropertyUpdate.as_view(),name="update"),
+    # url(r'^create/(?P<pk>)',PropertyCreate.as_view(),name="create"),
 ]

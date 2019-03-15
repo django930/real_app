@@ -5,7 +5,8 @@
 
     
     <h1>This is Buy page.</h1>
-
+    
+    {% if object_list %}
     <table>
         <tr>
         <th>
@@ -21,17 +22,21 @@
             Price
         </th>
         <th>
-            
+        </th>
+        <th>
+        </th>
+        <th>
         </th>
     </tr>
-    {% if data %}
-        {% for obj in data %}
+        {% for obj in object_list %}
             <tr class="{% cycle 'row1' 'row2' %}">
                 <td>{{ obj.property_name }}</td>
                 <td>{{ obj.property_address }}</td>
                 <td>{{ obj.property_age  }}</td>
                 <td>{{ obj.property_price  }}</td>
-                <td><a href="" class="btn btn-primary">View</a></td>
+                <td><a href="{% url 'property:detail' pk=obj.pk %}" class="btn btn-primary">View</a></td>
+                <td><a href="{% url 'property:delete' pk=obj.pk %}" class="btn btn-danger">Delete</a></td>
+                <td><a href="{% url 'property:update' pk=obj.pk %}" class="btn btn-warning">Update</a></td>
             </tr>
         {% endfor %}
     {% else %}

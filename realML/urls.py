@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from property.views import home_view,about_view,contact_view,property_list,property_sell
+from property.views import (home_view,
+                            about_view,
+                            AboutView,
+                            contact_view,
+                            property_list,
+                            property_sell,)
 from django.conf.urls import include
 
 
@@ -24,7 +29,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^home/',home_view,name="home"),
     url(r'^contact/',contact_view,name="contact"),
-    url(r'^about/',about_view,name='about'),
+    # url(r'^about/',about_view,name='about'),
+    url(r'^about/',AboutView.as_view(),name='about'),
     url(r'^property/',include("property.urls",namespace="property")),
 ]
 
