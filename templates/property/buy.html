@@ -1,0 +1,43 @@
+{% extends 'snippets/base.html' %}
+{% block buy %}
+    {% include 'snippets/nav.html' %}
+    <div class="container">
+
+    
+    <h1>This is Buy page.</h1>
+
+    <table>
+        <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            Age
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            
+        </th>
+    </tr>
+    {% if data %}
+        {% for obj in data %}
+            <tr class="{% cycle 'row1' 'row2' %}">
+                <td>{{ obj.property_name }}</td>
+                <td>{{ obj.property_address }}</td>
+                <td>{{ obj.property_age  }}</td>
+                <td>{{ obj.property_price  }}</td>
+                <td><a href="" class="btn btn-primary">View</a></td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <h1>No Properties are present.</h1>
+    {% endif %}
+    </table>
+</div>
+
+{% endblock %}
