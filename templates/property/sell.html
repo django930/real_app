@@ -2,12 +2,12 @@
 
 {% load crispy_forms_tags %}
 
-{% block sell %}
+{% block content %}
 {% include 'snippets/nav.html' %}
 <div class="container col-md-6">
         <h2>Enter Property details</h2>
         <br>
-        <form  method="POST">
+        <form  method="POST" enctype="multipart/form-data">
             {{form|crispy}}  {% csrf_token %}
             <button type="submit" class="btn btn-warning">Add</button>
         </form>

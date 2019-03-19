@@ -1,9 +1,9 @@
 {% extends 'snippets/base.html' %}
 
-{% block home %}
+{% block content %}
     {% include 'snippets/nav.html' %}
     <div class="actions" style="margin:20px">
         <a href="{% url 'property:buy' %}" class="btn btn-success btn-lg">Buy Property</a>
         <a href="{% url 'property:sell' %}" class="btn btn-primary btn-lg">Sell Property</a>
     </div>
-{% endblock home %}
+{% endblock%}

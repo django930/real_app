@@ -1,5 +1,8 @@
 {% extends 'snippets/base.html' %}
-{% block buy %}
+{% block content %}
+
+{% load static %}
+
     {% include 'snippets/nav.html' %}
     <div class="container">
         <h1>Property Details are: </h1>
@@ -8,6 +11,13 @@
     <p>Age: {{object.property_age}}</p>
     <p>Price: {{object.property_price}}</p>
     <p>Facing: {{object.property_facing}}</p>
+    {% if  object.property_img %}
+        <img src="{{object.property_img.url}}" alt="">
+    {% else %}
+        <p>No image is there for this property.</p>
+    {% endif %}
+    Property Added by {{object.user_data.username}}
     </div>
+    
     
 {% endblock %}

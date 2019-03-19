@@ -21,16 +21,33 @@ from property.views import (home_view,
                             contact_view,
                             property_list,
                             property_sell,)
+
+
 from django.conf.urls import include
-
-
+from django.conf.urls.static import static
+from django.views.static import serve
+from django.conf import settings
+from profiles.views import (LoginView,
+                            logout_view,
+                            registration,
+                            profile_update_view,
+                            profile_view)
 urlpatterns = [
     url(r'^$',home_view),
     url(r'^admin/', admin.site.urls),
     url(r'^home/',home_view,name="home"),
     url(r'^contact/',contact_view,name="contact"),
-    # url(r'^about/',about_view,name='about'),
     url(r'^about/',AboutView.as_view(),name='about'),
     url(r'^property/',include("property.urls",namespace="property")),
+    url(r'^login/',LoginView,name="login"),
+    url(r'^logout/',logout_view,name="logout"),
+    url(r'^registration/',registration,name="signup"),
+    url(r'^profile/update/',profile_update_view,name="p-update"),
+    url(r'^profile/',profile_view,name="profile"),
+    
+    
 ]
 
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

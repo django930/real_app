@@ -1,0 +1,58 @@
+{% extends 'snippets/base.html' %}
+
+
+{% block content %}
+{% include 'snippets/nav.html' %}
+<div class="container">
+    <h1>profileView</h1>
+    <a href="{% url 'p-update' %}" class="btn btn-warning">Update</a>
+
+
+    <div>
+        <h3>Mobile No: {{ profile.mobile }}</h3>
+        <h3>Address: {{profile.address}}</h3>
+        <h3>Pan No:{{ profile.pan }}</h3>
+    </div>
+    <div class="mt-5">
+        <h1>Properties List: </h1>
+
+        {% if properties %}
+    <table>
+        <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            Age
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+        </th>
+        <th>
+        </th>
+        <th>
+        </th>
+    </tr>
+        {% for obj in properties %}
+            <tr class="{% cycle 'row1' 'row2' %}">
+                <td>{{ obj.property_name }}</td>
+                <td>{{ obj.property_address }}</td>
+                <td>{{ obj.property_age  }}</td>
+                <td>{{ obj.property_price  }}</td>
+                <td><a href="{% url 'property:detail' pk=obj.pk %}" class="btn btn-primary">View</a></td>
+                <td><a href="{% url 'property:delete' pk=obj.pk %}" class="btn btn-danger">Delete</a></td>
+                <td><a href="{% url 'property:update' pk=obj.pk %}" class="btn btn-warning">Update</a></td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <h1>No Properties are added by you</h1>
+    {% endif %}
+    </table>
+    </div>
+</div>
+{% endblock %}
